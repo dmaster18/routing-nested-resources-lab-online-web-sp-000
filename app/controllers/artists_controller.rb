@@ -1,6 +1,6 @@
 class ArtistsController < ApplicationController
   def index
-       flash[:alert] = "Artist not found."
+    flash[:alert] = "Artist not found."
     @artists = Artist.all
   end
 
