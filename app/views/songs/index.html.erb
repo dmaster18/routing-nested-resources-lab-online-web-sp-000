@@ -2,7 +2,9 @@
 <% @songs.each do |song| %>
   <li><%= display_artist(song) %> - <%= link_to song.title, song_path(song) %></li>
   <% if song.artist == nil %>
+    
   <% end %>
+  
 <% end %>
 </ul>
 <br>
