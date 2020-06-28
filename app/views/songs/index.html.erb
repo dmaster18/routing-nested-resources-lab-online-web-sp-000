@@ -2,7 +2,7 @@
 <% @songs.each do |song| %>
   <li><%= display_artist(song) %> - <%= link_to song.title, song_path(song) %></li>
   <% if song.artist == nil %>
-    <li><%= link_to "Add Artist", edit_song_path(song)%>/li>
+    <li><%= link_to "Add Artist", edit_song_path(song)%></li>
   <% end %>
   
 <% end %>
