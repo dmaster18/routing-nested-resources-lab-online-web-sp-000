@@ -3,9 +3,10 @@
 <%= form_for @song  do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %><br>
-  <% if @song.artist != nil %>
-  <%= f.label :artist_name %>
-  <%= f.text_field :artist_name %>
+    <% if @song.artist != nil %>
+      <%= f.label :artist_name %>
+      <%= f.text_field :artist_name %>
+    <
   <br />
 
   <%= f.submit %>
