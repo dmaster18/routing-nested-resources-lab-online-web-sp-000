@@ -1,7 +1,7 @@
 class SongsController < ApplicationController
   def index
     if params[:artist_id]
-      @songs = Artist.find(params[:artist_id]).songs
+      @songs = Artist.find_by(id: params[:artist_id]).songs
     else
       @songs = Song.all
       flash[:alert] = "Artist not found."
@@ -10,7 +10,7 @@ class SongsController < ApplicationController
   end
 
   def show
-    @song = Song.find(params[:id])
+    @song = Song.find_by(id: params[:id])
     if @song && params[:artist_id]
       @song
     else
@@ -18,6 +18,32 @@ class SongsController < ApplicationController
       redirect_to artist_songs_path
     end
   end
+
+  1) SongsController GET index redirects when artist not found
+       Failure/Error: @songs = Artist.find(params[:artist_id]).songs
+
+       ActiveRecord::RecordNotFound:
+         Couldn't find Artist with 'id'=abc
+       # ./app/controllers/songs_controller.rb:4:in `index'
+
+
+    2) SongsController GET index returns 200 when just index with no artist_id
+       Failure/Error: expect(response).to be_ok
+         expected `#<ActionDispatch::TestResponse:0x0000000004943e38 @mon_mutex=#<Thread::Mutex:0x0000000004943dc0>, @mo...ch::Http::Headers:0x0000000004941d90 @req=#<ActionController::TestRequest:0x0000000004943fa0 ...>>>>.ok?` to return true, got false
+
+
+    3) SongsController GET show with  artist returns 200 with valid song and no artist
+       Failure/Error: redirect_to artist_songs_path
+
+
+
+    4) SongsController GET show with  artist redirects to artists songs when artist song not found
+       Failure/Error: @song = Song.find(params[:id])
+
+
+
+
+
 
   def new
     @song = Song.new
