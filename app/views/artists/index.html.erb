@@ -1,7 +1,7 @@
 <h1>Artists</h1>
 <ul>
   <% @artists.each do |artist| %>
-    <li><%= link_to artist.name, artist_path(artist.id) %></li>
+    <li><%= link_to artist.name, artist_path(artist) %></li>
     <li><%= link_to "Songs", artist_songs_path(artist.id) %></li>
   <% end %>
 </ul>
